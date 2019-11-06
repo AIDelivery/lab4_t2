@@ -30,14 +30,17 @@ int main(int argv, char* argc[]) {
   pthread_attr_t attr;
   string line, *l_p = &line;
 
-  if1.open("INFO.txt");
-  of1.open("LOG1.txt");
-  of2.open("LOG2.txt");
+  if1.open("/home/dan/Desktop/lab5/INFO.txt");
+  of1.open("/home/dan/Desktop/lab5/LOG1.txt");
+  of2.open("/home/dan/Desktop/lab5/LOG2.txt");
 
   if(if1.is_open() && of1.is_open() && of1.is_open())
     cout << "File openning... Success" << endl;
   else {
       cout << "ERROR" << endl;
+      if1.close();
+      of1.close();
+      of2.close();
       return 0;
   }
 
