@@ -55,8 +55,8 @@ int main(int argv, char* argc[]) {
     line2 = 'o' + line2;
     pthread_create(&thread2, &attr, string_to2files, (void*) line2.c_str());
 
-    pthread_join(thread1, NULL);
     pthread_join(thread2, NULL);
+    pthread_join(thread1, NULL);
   }
 
   if1.close();
