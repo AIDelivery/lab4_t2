@@ -1,7 +1,10 @@
-2: Explicit is bett
+0:      Python zen:
 2: Explicit is better than implicit.
 4: Complex is better than complicated.
 6: Sparse is better than dense.
 8: Special cases aren't special enough to break the rules.
+10: Errors should never pass silently.
 12: In the face of ambiguity, refuse the temptation to guess.
 14: Although that way may not be obvious at first unless you're Dutch.
+16: Although never is often better than *right* now.
+18: If the implementation is easy to explain, it may be a good idea.
