@@ -1,6 +1,5 @@
 #include <pthread.h>
 #include <string.h>
-
 #include <fstream>
 #include <iostream>
 using namespace std;
@@ -30,7 +29,7 @@ void* string_to2files(void* v) {
 int main(int argv, char* argc[]) {
   pthread_t thread1, thread2;
   pthread_attr_t attr;
-  string line, *l_p = &line;
+  string line1, line2;
 
   if1.open("./INFO.txt");
   of1.open("./LOG1.txt");
@@ -48,17 +47,16 @@ int main(int argv, char* argc[]) {
 
   pthread_attr_init(&attr);
 
-  for(int i = 0; getline(if1, line); i++) {
-    if(i%2 == 0) {
-      line = 'e' + line;
-      pthread_create(&thread1, &attr, string_to2files, (void*) line.c_str());
-      pthread_join(thread1, NULL);
-    }
-    else {
-      line = 'o' + line;
-      pthread_create(&thread2, &attr, string_to2files, (void*) line.c_str());
-      pthread_join(thread2, NULL);
-    }
+  for(int i = 0; getline(if1, line1); i += 2) {
+    line1 = 'e' + line1;
+    pthread_create(&thread1, &attr, string_to2files, (void*) line1.c_str());
+
+    getline(if1, line2);
+    line2 = 'o' + line2;
+    pthread_create(&thread2, &attr, string_to2files, (void*) line2.c_str());
+
+    pthread_join(thread1, NULL);
+    pthread_join(thread2, NULL);
   }
 
   if1.close();
